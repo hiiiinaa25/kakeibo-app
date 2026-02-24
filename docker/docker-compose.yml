@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    container_name: fuelphp-app
+    ports:
+      - "80:80"
+    volumes:
+      - ../:/var/www/html/my_fuel_project
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ../
+      dockerfile: docker/db/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kakeibo_app
