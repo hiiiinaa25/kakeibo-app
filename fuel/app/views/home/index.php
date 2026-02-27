@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="/assets/css/common.css?v=<?php echo filemtime(DOCROOT . 'assets/css/common.css'); ?>">
+<link rel="stylesheet" href="/assets/css/home.css?v=<?php echo filemtime(DOCROOT . 'assets/css/home.css'); ?>">
+
+<div class="page-card">
 <h1>ホーム</h1>
 
 <p>
@@ -12,3 +16,4 @@
   <li><a href="<?php echo \Uri::create('transactions/index'); ?>">収支一覧</a></li>
   <li><a href="<?php echo \Uri::create('auth/logout'); ?>">ログアウト</a></li>
 </ul>
+</div>

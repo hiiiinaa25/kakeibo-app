@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/assets/css/common.css?v=<?php echo filemtime(DOCROOT . 'assets/css/common.css'); ?>">
+<link rel="stylesheet" href="/assets/css/transactions.css?v=<?php echo filemtime(DOCROOT . 'assets/css/transactions.css'); ?>">
+
 <h1>収支一覧</h1>
 
 <p><a href="<?php echo \Uri::create('transactions/create'); ?>">収支登録</a></p>
@@ -6,9 +9,9 @@
 <?php endif; ?>
 <table border="1" cellpadding="6" cellspacing="0" style="margin-bottom:12px;">
   <tr>
-    <th>収入合計</th>
-    <th>支出合計</th>
-    <th>残高</th>
+    <th><span class="tx-type-badge tx-type-income">収入合計</span></th>
+    <th><span class="tx-type-badge tx-type-expense">支出合計</span></th>
+    <th><span class="tx-type-badge tx-type-balance">残高</span></th>
   </tr>
   <tr>
     <td><?php echo number_format((int) $income_total); ?> 円</td>
@@ -38,7 +41,12 @@
       <?php foreach ($transactions as $row): ?>
         <tr id="transaction-row-<?php echo (int) $row['id']; ?>">
           <td><?php echo (int) $row['id']; ?></td>
-          <td><?php echo htmlspecialchars(\Model_Transaction::label_for_type($row['type']), ENT_QUOTES, 'UTF-8'); ?></td>
+          <?php $type_label = \Model_Transaction::label_for_type($row['type']); ?>
+          <td>
+            <span class="tx-type-badge <?php echo ($type_label === '収入') ? 'tx-type-income' : 'tx-type-expense'; ?>">
+              <?php echo htmlspecialchars($type_label, ENT_QUOTES, 'UTF-8'); ?>
+            </span>
+          </td>
           <td><?php echo number_format((int) $row['amount']); ?> 円</td>
           <td><?php echo htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8'); ?></td>
           <td><?php echo htmlspecialchars(isset($row['date']) ? $row['date'] : (isset($row['created_at']) ? substr($row['created_at'], 0, 10) : ''), ENT_QUOTES, 'UTF-8'); ?></td>

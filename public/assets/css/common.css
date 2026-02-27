@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  padding: 24px;
+  background: #e8f3ff;
+  color: #000;
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body > * {
+  width: min(960px, 100%);
+}
+
+.page-card {
+  width: min(640px, 100%);
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 18px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+}
+
+p {
+  margin: 8px 0;
+}
+
+a {
+  color: #1456a0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+}
+
+th {
+  background: #f1f5f9;
+}
+
+button {
+  padding: 6px 12px;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f1f5f9;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"] {
+  width: 320px;
+  max-width: 100%;
+  padding: 8px;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  box-sizing: border-box;
+}

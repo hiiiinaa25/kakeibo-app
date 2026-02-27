@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="/assets/css/common.css">
+<link rel="stylesheet" href="/assets/css/auth.css">
+
+<div class="auth-card">
 <h1>ログイン</h1>
 
 <!-- エラーがあれば表示 -->
@@ -24,3 +28,4 @@
 </form>
 
 <p>アカウントお持ちでない場合はこちら<a href="/auth/register">新規会員登録</a></p>
+</div>

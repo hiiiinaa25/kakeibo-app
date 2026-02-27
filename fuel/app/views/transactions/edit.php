@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/assets/css/common.css">
+<link rel="stylesheet" href="/assets/css/transactions.css">
+
 <h1>収支データ編集</h1>
 
 <?php if (!empty($error)): ?>
