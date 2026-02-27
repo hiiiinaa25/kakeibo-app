@@ -6,16 +6,15 @@
   </p>
 <?php endif; ?>
 
-<form method="post" action="/transactions/create">
-
+<form method="post" action="<?php echo \Uri::create('transactions/create'); ?>">
   <div>
-    <label>種類 *</label><br>
+    <label>種別 *</label><br>
     <label><input type="radio" name="type" value="0" checked> 支出</label>
     <label><input type="radio" name="type" value="1"> 収入</label>
   </div>
 
   <div>
-    <label>金額（円） *</label><br>
+    <label>金額（円）*</label><br>
     <input type="number" name="amount" min="1" required>
   </div>
 
@@ -37,4 +36,4 @@
   <button type="submit">登録</button>
 </form>
 
-<p><a href="/">ホームに戻る</a></p>
+<p><a href="<?php echo \Uri::create('transactions'); ?>">一覧へ戻る</a></p>
