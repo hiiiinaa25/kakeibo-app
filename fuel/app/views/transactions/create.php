@@ -11,6 +11,7 @@
 <?php endif; ?>
 
 <form method="post" action="<?php echo \Uri::create('transactions/create'); ?>" class="tx-create-form">
+  <?php echo \Form::csrf(); ?>
   <div class="tx-field">
     <div class="tx-type-group">
       <label class="tx-type-option">

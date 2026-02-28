@@ -69,6 +69,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-min.js"></script>
   <script>
   (function () {
+    var csrfKey = <?php echo json_encode(\Config::get('security.csrf_token_key', 'fuel_csrf_token')); ?>;
+    var csrfToken = <?php echo json_encode(\Security::fetch_token()); ?>;
+
     function requestDelete(button) {
       var id = button.getAttribute('data-transaction-id');
       if (!id) {
@@ -81,6 +84,7 @@
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', '<?php echo \Uri::create('transactions/delete'); ?>/' + encodeURIComponent(id), true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
       xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
       xhr.onreadystatechange = function () {
         if (xhr.readyState !== 4) {
@@ -105,7 +109,7 @@
 
         alert(message);
       };
-      xhr.send('');
+      xhr.send(encodeURIComponent(csrfKey) + '=' + encodeURIComponent(csrfToken));
     }
 
     function ViewModel() {}

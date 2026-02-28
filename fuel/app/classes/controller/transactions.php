@@ -42,6 +42,12 @@ class Controller_Transactions extends Controller_Base
 
         if (\Input::method() === 'POST')
         {
+            if ( ! \Security::check_token())
+            {
+                $data['error'] = '不正なリクエストです';
+                return \Response::forge(\View::forge('transactions/create', $data));
+            }
+
             $type     = (int) \Input::post('type');
             $amount   = (int) \Input::post('amount');
             $category = trim((string) \Input::post('category'));
@@ -113,6 +119,15 @@ class Controller_Transactions extends Controller_Base
             return \Response::forge(
                 json_encode(array('ok' => false, 'message' => 'Method Not Allowed')),
                 405,
+                array('Content-Type' => 'application/json; charset=utf-8')
+            );
+        }
+
+        if ( ! \Security::check_token())
+        {
+            return \Response::forge(
+                json_encode(array('ok' => false, 'message' => '不正なリクエストです')),
+                400,
                 array('Content-Type' => 'application/json; charset=utf-8')
             );
         }
@@ -195,6 +210,22 @@ class Controller_Transactions extends Controller_Base
         if (\Input::method() !== 'POST' || $id === null || !ctype_digit((string) $id))
         {
             return \Response::redirect('transactions');
+        }
+
+        if ( ! \Security::check_token())
+        {
+            $data = array(
+                'error' => '不正なリクエストです',
+                'id' => (int) $id,
+                'form' => array(
+                    'type' => (int) \Input::post('type'),
+                    'amount' => (int) \Input::post('amount'),
+                    'category' => trim((string) \Input::post('category')),
+                    'date' => trim((string) \Input::post('date')),
+                    'memo' => trim((string) \Input::post('memo')),
+                ),
+            );
+            return \Response::forge(\View::forge('transactions/edit', $data));
         }
 
         $type     = (int) \Input::post('type');

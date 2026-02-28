@@ -7,6 +7,11 @@ class Controller_Auth extends Controller
         //新規登録
         if (\Input::method() === 'POST')
         {
+            if ( ! \Security::check_token())
+            {
+                return \Response::forge('不正なリクエストです');
+            }
+
             // POST送信されたときだけ処理する
             $username = trim((string)\Input::post('username'));
             $email    = trim((string)\Input::post('email'));
@@ -72,6 +77,12 @@ class Controller_Auth extends Controller
         // POST送信されたとき
         if (\Input::method() === 'POST')
         {
+            if ( ! \Security::check_token())
+            {
+                $data['error'] = '不正なリクエストです';
+                return \Response::forge(\View::forge('auth/login', $data));
+            }
+
             // 入力されたメールとパスワードを取得
             $email = trim((string)\Input::post('email'));
             $pass  = (string)\Input::post('password');

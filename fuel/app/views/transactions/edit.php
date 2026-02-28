@@ -10,6 +10,7 @@
 <?php endif; ?>
 
 <form method="post" action="<?php echo \Uri::create('transactions/update/' . (int) $id); ?>">
+  <?php echo \Form::csrf(); ?>
   <div>
     <label>種別 *</label><br>
     <label><input type="radio" name="type" value="0" <?php echo ((int) $form['type'] === 0) ? 'checked' : ''; ?>> 支出</label>

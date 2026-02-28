@@ -12,6 +12,7 @@
 <?php endif; ?>
  
 <form method="post" action="/auth/login">
+  <?php echo \Form::csrf(); ?>
 
   <!-- メールアドレス -->
   <div>

@@ -5,6 +5,7 @@
 <h1 class="auth-title">新規会員登録</h1>
 
 <form method="post" action="/auth/register">
+  <?php echo \Form::csrf(); ?>
   <div class="field">
     <label>お名前 <span class="required">*</span></label><br>
     <input type="text" name="username" required>
