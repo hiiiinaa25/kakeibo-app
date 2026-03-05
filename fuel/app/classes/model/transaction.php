@@ -148,12 +148,6 @@ class Model_Transaction
 
     public static function soft_delete_by_id($id, $user_id)
     {
-        $columns = self::get_columns();
-        if ( ! isset($columns['deleted_at']))
-        {
-            return false;
-        }
-
         $target = \DB::select('id', 'deleted_at')
             ->from('transactions')
             ->where('id', '=', (int) $id)
@@ -166,19 +160,17 @@ class Model_Transaction
             return false;
         }
 
+        $now = date('Y-m-d H:i:s');
         $update_data = array(
-            'deleted_at' => date('Y-m-d H:i:s'),
+            'deleted_at' => $now,
+            'updated_at' => $now,
         );
-
-        if (isset($columns['updated_at']))
-        {
-            $update_data['updated_at'] = date('Y-m-d H:i:s');
-        }
 
         $affected = \DB::update('transactions')
             ->set($update_data)
             ->where('id', '=', (int) $id)
             ->where('user_id', '=', (int) $user_id)
+            ->where('deleted_at', 'is', null)
             ->execute();
 
         return ((int) $affected > 0);
@@ -277,6 +269,6 @@ class Model_Transaction
 
         $affected = $query->execute();
 
-        return ((int) $affected >= 0);
+        return ((int) $affected > 0);
     }
 }
