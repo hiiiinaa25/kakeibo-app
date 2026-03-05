@@ -2,6 +2,10 @@
 return array(
 	'_root_'  => 'home/index',  // The default route
 	'_404_'   => 'welcome/404',    // The main 404 route
+	'home' => 'home/index',
+	'auth/register' => 'auth/register',
+	'auth/login' => 'auth/login',
+	'auth/logout' => 'auth/logout',
 	'transactions' => 'transactions/index',
 	'transactions/create' => 'transactions/create',
 	'transactions/edit/(:num)' => 'transactions/edit/$1',
