@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Auth extends Controller
+class Controller_Auth extends Controller_App
 {
     public function action_register()
     {
@@ -66,7 +66,7 @@ class Controller_Auth extends Controller
             return \Response::redirect('auth/login');
         }
 
-        return \Response::forge(\View::forge('auth/register'));
+        return $this->render('auth/register', array(), array('auth'), 'User Register');
     }
     //ログイン
     public function action_login()
@@ -80,7 +80,7 @@ class Controller_Auth extends Controller
             if ( ! \Security::check_token())
             {
                 $data['error'] = '不正なリクエストです';
-                return \Response::forge(\View::forge('auth/login', $data));
+                return $this->render('auth/login', $data, array('auth'), 'Login');
             }
 
             // 入力されたメールとパスワードを取得
@@ -91,7 +91,7 @@ class Controller_Auth extends Controller
             if ($email === '' || $pass === '')
             {
                 $data['error'] = '未入力があります';
-                return \Response::forge(\View::forge('auth/login', $data));
+                return $this->render('auth/login', $data, array('auth'), 'Login');
             }
 
             // DBからメールアドレス一致のユーザーを取得
@@ -108,14 +108,14 @@ class Controller_Auth extends Controller
             if (!$row)
             {
                 $data['error'] = 'ユーザーが存在しません';
-                return \Response::forge(\View::forge('auth/login', $data));
+                return $this->render('auth/login', $data, array('auth'), 'Login');
             }
             // パスワード確認
             // 入力パスワードとDBのハッシュを比較
             if (empty($row[$password_column]) || !password_verify($pass, $row[$password_column]))
             {
                 $data['error'] = 'パスワードが違います';
-                return \Response::forge(\View::forge('auth/login', $data));
+                return $this->render('auth/login', $data, array('auth'), 'Login');
             }
             // ログイン成功
             // セッションにユーザー情報を保存
@@ -126,7 +126,7 @@ class Controller_Auth extends Controller
             // トップページへ移動
             return \Response::redirect('/'); 
         }
-        return \Response::forge(\View::forge('auth/login', $data));
+        return $this->render('auth/login', $data, array('auth'), 'Login');
     }
     // ログアウト
     public function action_logout()

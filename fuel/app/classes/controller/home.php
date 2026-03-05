@@ -10,6 +10,6 @@ class Controller_Home extends Controller_Base
             'last_login_at' => (string) \Cookie::get('last_login_at', ''),
         );
 
-        return \Response::forge(\View::forge('home/index', $data));
+        return $this->render('home/index', $data, array('home'), 'Home');
     }
 }

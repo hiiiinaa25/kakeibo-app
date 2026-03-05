@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="/assets/css/common.css">
-<link rel="stylesheet" href="/assets/css/auth.css">
-
 <div class="auth-card">
 <h1>ログイン</h1>
 

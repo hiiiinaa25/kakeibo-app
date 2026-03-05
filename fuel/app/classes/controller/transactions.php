@@ -33,7 +33,7 @@ class Controller_Transactions extends Controller_Base
             'can_soft_delete' => isset($columns['deleted_at']),
         );
 
-        return \Response::forge(\View::forge('transactions/index', $data));
+        return $this->render('transactions/index', $data, array('transactions'), 'Transactions');
     }
 
     public function action_create()
@@ -45,7 +45,7 @@ class Controller_Transactions extends Controller_Base
             if ( ! \Security::check_token())
             {
                 $data['error'] = '不正なリクエストです';
-                return \Response::forge(\View::forge('transactions/create', $data));
+                return $this->render('transactions/create', $data, array('transactions'), 'Create Transaction');
             }
 
             $type     = (int) \Input::post('type');
@@ -57,20 +57,20 @@ class Controller_Transactions extends Controller_Base
             if ($amount <= 0 || $category === '' || $date === '')
             {
                 $data['error'] = '必須項目を入力してください。';
-                return \Response::forge(\View::forge('transactions/create', $data));
+                return $this->render('transactions/create', $data, array('transactions'), 'Create Transaction');
             }
 
             if ($type !== 0 && $type !== 1)
             {
                 $data['error'] = '収支の種別が不正です。';
-                return \Response::forge(\View::forge('transactions/create', $data));
+                return $this->render('transactions/create', $data, array('transactions'), 'Create Transaction');
             }
 
             $date_time = \DateTime::createFromFormat('Y-m-d', $date);
             if ($date_time === false || $date_time->format('Y-m-d') !== $date)
             {
                 $data['error'] = '日付の形式が不正です。';
-                return \Response::forge(\View::forge('transactions/create', $data));
+                return $this->render('transactions/create', $data, array('transactions'), 'Create Transaction');
             }
 
             $user_id = (int) \Session::get('user_id');
@@ -109,7 +109,7 @@ class Controller_Transactions extends Controller_Base
             return \Response::redirect('transactions');
         }
 
-        return \Response::forge(\View::forge('transactions/create', $data));
+        return $this->render('transactions/create', $data, array('transactions'), 'Create Transaction');
     }
 
     public function action_delete($id = null)
@@ -202,7 +202,7 @@ class Controller_Transactions extends Controller_Base
             ),
         );
 
-        return \Response::forge(\View::forge('transactions/edit', $data));
+        return $this->render('transactions/edit', $data, array('transactions'), 'Edit Transaction');
     }
 
     public function action_update($id = null)
@@ -225,7 +225,7 @@ class Controller_Transactions extends Controller_Base
                     'memo' => trim((string) \Input::post('memo')),
                 ),
             );
-            return \Response::forge(\View::forge('transactions/edit', $data));
+            return $this->render('transactions/edit', $data, array('transactions'), 'Edit Transaction');
         }
 
         $type     = (int) \Input::post('type');
@@ -249,20 +249,20 @@ class Controller_Transactions extends Controller_Base
         if ($amount <= 0 || $category === '' || $date === '')
         {
             $data['error'] = '必須項目を入力してください。';
-            return \Response::forge(\View::forge('transactions/edit', $data));
+            return $this->render('transactions/edit', $data, array('transactions'), 'Edit Transaction');
         }
 
         if ($type !== 0 && $type !== 1)
         {
             $data['error'] = '収支の種別が不正です。';
-            return \Response::forge(\View::forge('transactions/edit', $data));
+            return $this->render('transactions/edit', $data, array('transactions'), 'Edit Transaction');
         }
 
         $date_time = \DateTime::createFromFormat('Y-m-d', $date);
         if ($date_time === false || $date_time->format('Y-m-d') !== $date)
         {
             $data['error'] = '日付の形式が不正です。';
-            return \Response::forge(\View::forge('transactions/edit', $data));
+            return $this->render('transactions/edit', $data, array('transactions'), 'Edit Transaction');
         }
 
         $user_id = (int) \Session::get('user_id');
@@ -277,7 +277,7 @@ class Controller_Transactions extends Controller_Base
         if ( ! $updated)
         {
             $data['error'] = '更新できませんでした。';
-            return \Response::forge(\View::forge('transactions/edit', $data));
+            return $this->render('transactions/edit', $data, array('transactions'), 'Edit Transaction');
         }
 
         return \Response::redirect('transactions');

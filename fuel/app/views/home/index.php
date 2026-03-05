@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="/assets/css/common.css?v=<?php echo filemtime(DOCROOT . 'assets/css/common.css'); ?>">
-<link rel="stylesheet" href="/assets/css/home.css?v=<?php echo filemtime(DOCROOT . 'assets/css/home.css'); ?>">
-
 <div class="page-card">
 <h1>ホーム</h1>
 

@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="/assets/css/common.css?v=<?php echo filemtime(DOCROOT . 'assets/css/common.css'); ?>">
-<link rel="stylesheet" href="/assets/css/transactions.css?v=<?php echo filemtime(DOCROOT . 'assets/css/transactions.css'); ?>">
-
 <h1>収支一覧</h1>
 
 <p><a href="<?php echo \Uri::create('transactions/create'); ?>">収支登録</a></p>

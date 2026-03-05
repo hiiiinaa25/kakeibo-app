@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="/assets/css/common.css?v=<?php echo filemtime(DOCROOT . 'assets/css/common.css'); ?>">
-<link rel="stylesheet" href="/assets/css/transactions.css?v=<?php echo filemtime(DOCROOT . 'assets/css/transactions.css'); ?>">
-
 <div class="page-card tx-create-card">
 <h1 class="tx-create-title">収支データ登録</h1>
 
