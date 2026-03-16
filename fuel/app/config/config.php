@@ -256,6 +256,30 @@ return array(
 		PKGPATH,
 	),
 
+	'ui_colors' => array(
+		'bg' => '#e8f3ff',
+		'surface' => '#ffffff',
+		'border' => '#dbeafe',
+		'text' => '#0f172a',
+		'link' => '#1456a0',
+		'link_hover' => '#0f3f78',
+		'muted_border' => '#cbd5e1',
+		'muted_bg' => '#f1f5f9',
+		'input_bg' => '#e3e3e3',
+		'input_border' => '#94a3b8',
+		'button_bg' => '#0f172a',
+		'button_text' => '#ffffff',
+		'button_hover' => '#111827',
+		'danger' => '#dc2626',
+		'warning' => '#b45309',
+		'income_text' => '#1d4ed8',
+		'income_bg' => '#dbeafe',
+		'expense_text' => '#b91c1c',
+		'expense_bg' => '#fee2e2',
+		'balance_text' => '#166534',
+		'balance_bg' => '#dcfce7',
+	),
+
 	/**************************************************************************/
 	/* Always Load                                                            */
 	/**************************************************************************/
